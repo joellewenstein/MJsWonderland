@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  jambase_id: 1
+  name: MyString
+  city: MyString
+  state: MyString
+  zip: MyString
+
+two:
+  jambase_id: 1
+  name: MyString
+  city: MyString
+  state: MyString
+  zip: MyString

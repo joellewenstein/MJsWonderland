@@ -1,0 +1,2 @@
+class VoteDown < Vote
+end

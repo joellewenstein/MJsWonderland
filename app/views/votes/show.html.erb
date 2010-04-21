@@ -1,0 +1,23 @@
+<p>
+  <b>User:</b>
+  <%=h @vote.user_id %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%=h @vote.event_id %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%=h @vote.type %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%=h @vote.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_vote_path(@vote) %> |
+<%= link_to 'Back', votes_path %>

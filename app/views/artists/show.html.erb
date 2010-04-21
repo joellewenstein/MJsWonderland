@@ -1,0 +1,13 @@
+<p>
+  <b>Jambase:</b>
+  <%=h @artist.jambase_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @artist.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_artist_path(@artist) %> |
+<%= link_to 'Back', artists_path %>

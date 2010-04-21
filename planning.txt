@@ -1,0 +1,22 @@
+MODELS
+----------
+
+Event:
+- jambase_id
+- ticket_url   
+- event_url
+- date    
+- has (and belongs to?) many artists
+- has one venue
+           
+
+Venue:
+- id
+- name
+- city
+- state
+- zip
+
+Artist
+- id
+- name

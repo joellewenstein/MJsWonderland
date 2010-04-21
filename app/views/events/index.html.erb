@@ -1,0 +1,28 @@
+<h1>Listing events</h1>
+
+<table>
+  <tr>
+    <th>Jambase</th>
+    <th>Date</th>
+    <th>Ticket url</th>
+    <th>Event url</th>
+    <th>Venue</th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%=h event.jambase_id %></td>
+    <td><%=h event.date %></td>
+    <td><%=h event.ticket_url %></td>
+    <td><%=h event.event_url %></td>
+    <td><%=h event.venue_id %></td>
+    <td><%= link_to 'Show', event %></td>
+    <td><%= link_to 'Edit', edit_event_path(event) %></td>
+    <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New event', new_event_path %>
