@@ -1,13 +1,22 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  email: MyString
-  first_name: MyString
-  last_name: MyString
-  password: MyString
+  email: MyString@email.com
+  #first_name: MyString
+  #last_name: MyString
+  encrypted_password: abcdefg
+  password_salt: abcdefg        
+  confirmation_token: wertyuio   
+  confirmed_at: nil         
+  confirmation_sent_at: nil 
+  reset_password_token: poiuyt 
+  remember_token: tyghbnghty       
+  remember_created_at: nil  
+  created_at: nil           
+  updated_at: nil 
 
-two:
-  email: MyString
-  first_name: MyString
-  last_name: MyString
-  password: MyString
+#two:
+  #email: MyString
+  #first_name: MyString
+  # last_name: MyString
+  #password: MyString  

@@ -3,11 +3,11 @@
 one:
   user_id: 1
   event_id: 1
-  type: MyString
+  kind: MyString
   comment: MyString
 
 two:
   user_id: 1
   event_id: 1
-  type: MyString
+  kind: MyString
   comment: MyString

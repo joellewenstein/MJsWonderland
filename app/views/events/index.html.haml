@@ -1,0 +1,75 @@
+%h1
+  Listing events
+%table
+  %tr
+    %th Date
+    %th Venue
+    %th Artists
+    %th Your Vote
+    %th Up Votes
+    %th Down Votes
+    %th Attendance Count
+    %th Comment?
+    %th Take Action!
+  - @events.each do |event|
+    - current_user_vote = event.up_down_vote_for_user(current_user)
+    %tr.event-row{:event_id => event.id}
+      %td= h event.date
+      %td
+        %b= h event.venue.name
+      %td= h event.artists.collect{|x| x.name}.to_sentence
+      %td= (current_user_vote ? "You've said: #{current_user_vote.comment}" : "You haven't voted")
+      %td= h event.votes_up_count
+      %td= h event.votes_down_count
+      %td= h event.attendance_count
+      %td.comment{:style => "display: none"} 
+        %form
+          Add a comment:
+          = hidden_field_tag "id", "-1" 
+          = text_field_tag "vote[comment]"
+          .submit-comment= submit_tag 'Create'           
+      %td.voting
+        .vote-link{:vote_kind => "Up"}= link_to "Vote Up!", "#"
+        .vote-link{:vote_kind => "Down"}= link_to "Vote Down!", "#"
+        .vote-link{:vote_kind => "Attending"}= link_to "I'm going!", "#"
+        
+      %td=# link_to 'Show', event
+      %td=# link_to 'Edit', edit_event_path(event)
+      %td=# link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete        
+%br
+= link_to 'New event', new_event_path
+
+:javascript 
+
+  // Voting
+  $(".event-row .voting .vote-link a").click(function(){
+    event_id = $(this).parents("tr").attr("event_id");
+    vote_kind = $(this).parents(".vote-link").attr("vote_kind");
+    form_object = $(this).parents("tr").find(".comment");
+    
+    $.post('/votes',  
+           {'vote[event_id]': event_id, 'vote[kind]': vote_kind },
+           
+           // Show the comment field
+           function(data){             
+              if (data != "-1") {
+                if (vote_kind == "Up" || vote_kind == "Down") { 
+                  form_object.find("#id").val(data);
+                  form_object.slideDown();
+                }         
+              }
+            });
+    return false;
+  });
+  
+  // Commenting
+  
+  $(".event-row .comment form").submit(function(){
+    url = "/votes/" + $(this).find("#id").val();
+    $.ajax({
+        type: "PUT",
+        url: url,
+        data: $(this).serialize() });
+    return false;
+    
+  });

@@ -35,4 +35,26 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  
+  ####### Stolen from integration_test_helper #######
+  def sign_in_as_user(options={}, &block)
+    user = create_user(options)
+    # visit new_user_session_path unless options[:visit] == false
+    # fill_in 'email', :with => 'user@test.com'
+    # fill_in 'password', :with => '123456'
+    # check 'remember me' if options[:remember_me] == true
+    # yield if block_given?
+    # click_button 'Sign In'  
+    user
+  end  
+  
+  def create_user(options={})
+    @user ||= begin
+      user = User.create!(
+        :email => 'user@test.com', :password => '123456', :password_confirmation => '123456'
+      )
+      user.confirm! unless options[:confirm] == false
+      user
+    end
+  end
 end

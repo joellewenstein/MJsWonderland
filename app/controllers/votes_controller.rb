@@ -40,17 +40,30 @@ class VotesController < ApplicationController
   # POST /votes
   # POST /votes.xml
   def create
-    @vote = Vote.new(params[:vote])
+    # Only the current user can vote
+    params[:vote] = params[:vote].merge({:user_id => current_user.id})
 
-    respond_to do |format|
+    @vote = Vote.new(params[:vote]) 
+    
+    
+    
+    if request.xhr? 
       if @vote.save
-        flash[:notice] = 'Vote was successfully created.'
-        format.html { redirect_to(@vote) }
-        format.xml  { render :xml => @vote, :status => :created, :location => @vote }
+        render :text => "#{@vote.id}"
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
+        render :text => "-1"
       end
+    else
+      respond_to do |format|
+        if @vote.save
+          flash[:notice] = 'Vote was successfully created.'
+          format.html { redirect_to(@vote) }
+          format.xml  { render :xml => @vote, :status => :created, :location => @vote }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
+        end
+      end 
     end
   end
 
@@ -58,7 +71,10 @@ class VotesController < ApplicationController
   # PUT /votes/1.xml
   def update
     @vote = Vote.find(params[:id])
-
+    
+    puts "Found vote: #{@vote.to_yaml}" 
+    puts "Params[:vote]: #{params[:vote]}"
+    
     respond_to do |format|
       if @vote.update_attributes(params[:vote])
         flash[:notice] = 'Vote was successfully updated.'

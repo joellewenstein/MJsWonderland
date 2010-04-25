@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100415011635) do
+ActiveRecord::Schema.define(:version => 20100424233559) do
 
   create_table "artists", :force => true do |t|
     t.integer  "jambase_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20100415011635) do
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "event_id"
-    t.string   "type"
+    t.string   "kind"
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"

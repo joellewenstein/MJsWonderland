@@ -65,7 +65,7 @@ class EventTest < ActiveSupport::TestCase
     event_1 = Event.new(:jambase_id => 13, :ticket_url => "http://www.fake.com", :date => Time.now, :venue_id => 12)
     assert event_1.save
 
-    v = VoteUp.new(:user_id => 1, :event_id => event_1.id)
+    v = Vote.new(:user_id => 1, :event_id => event_1.id, :kind => "Up")
     assert v.save             
 
     event_1.reload
@@ -79,13 +79,13 @@ class EventTest < ActiveSupport::TestCase
     
     # 10 up votes
     10.times do |x|
-      v = VoteUp.new(:user_id => x, :event_id => event_1.id) 
+      v = Vote.new(:user_id => x, :event_id => event_1.id, :kind => "Up") 
       assert v.save
     end
     
     # 3 down votes
     3.times do |y|
-      v = VoteDown.new(:user_id => (100 + y), :event_id => event_1.id) 
+      v = Vote.new(:user_id => (100 + y), :event_id => event_1.id, :kind => "Down") 
       assert v.save!
     end 
     
@@ -93,4 +93,76 @@ class EventTest < ActiveSupport::TestCase
     assert_equal 3, event_1.votes_down_count  
   end 
   
+  def test_can_count_attendance
+    event_1 = Event.new(:jambase_id => 13, :ticket_url => "http://www.fake.com", :date => Time.now, :venue_id => 12)
+    assert event_1.save
+    
+    assert_equal 0, event_1.attendance_count
+    
+    3.times do |y|
+      v = Vote.new(:user_id => (100 + y), :event_id => event_1.id, :kind => "Attending") 
+      assert v.save!
+    end
+    
+    event_1.reload
+    
+    assert_equal 3, event_1.attendance_count
+  end
+  
+  
+  ### Ratings ####
+  
+  def test_event_has_rating
+    event_1 = Event.new(:jambase_id => 13, :ticket_url => "http://www.fake.com", :date => Time.now, :venue_id => 12)
+    assert event_1.save
+   
+    assert !event_1.rating
+    
+    # 10 up votes
+    10.times do |x|
+      v = Vote.new(:user_id => x, :event_id => event_1.id, :kind => "Up") 
+      assert v.save
+    end
+    
+    # 3 down votes
+    3.times do |y|
+      v = Vote.new(:user_id => (100 + y), :event_id => event_1.id, :kind => "Down") 
+      assert v.save
+    end 
+    
+    event_1.reload
+    
+    assert event_1.rating
+  end 
+  
+  def test_rating_goes_up_with_more_positive_ratings
+    event_1 = Event.new(:jambase_id => 13, :ticket_url => "http://www.fake.com", :date => Time.now, :venue_id => 12)
+    assert event_1.save
+    
+    # 2 up votes
+    2.times do |x|
+      v = Vote.new(:user_id => x, :event_id => event_1.id, :kind => "Up") 
+      assert v.save!
+    end
+    
+    # 4 down votes
+    4.times do |y|
+      v = Vote.new(:user_id => (100 + y), :event_id => event_1.id, :kind => "Down") 
+      assert v.save!
+    end
+    
+    first_rating = event_1.rating
+    
+    # More up votes
+    6.times do |x|
+      v = Vote.new(:user_id => 200 + x, :event_id => event_1.id, :kind => "Up") 
+      assert v.save
+    end   
+    
+    event_1.reload
+    
+    second_rating = event_1.rating
+    
+    assert (first_rating < second_rating)
+  end
 end

@@ -7,21 +7,23 @@ class VoteTest < ActiveSupport::TestCase
   end
   
   def test_votes_have_mandatory_fields
-    v = VoteUp.new(:user_id => 1, :event_id => 2)
+    v = Vote.new(:user_id => 1, :event_id => 2, :kind => "Up")
     assert v.save
     
-    v = VoteUp.new(:user_id => 1)
+    v = Vote.new(:user_id => 1, :kind => "Up")
     assert !v.save
     
-    v = VoteUp.new(:user_id => 1)
-    assert !v.save
+    v = Vote.new(:user_id => 1, :kind => "Up")
+    assert !v.save                           
+    
+    v = Vote.new(:user_id => 1)
   end    
   
   def test_votes_associated_with_events
     event_1 = Event.new(:jambase_id => 130442, :ticket_url => "http://www.fake.com", :date => Time.now, :venue_id => 12)
     assert event_1.save
     
-    v = VoteUp.new(:user_id => 1, :event_id => event_1.id)
+    v = Vote.new(:user_id => 1, :event_id => event_1.id, :kind => "Up")
     assert v.save             
     
     event_1.reload
@@ -48,23 +50,31 @@ class VoteTest < ActiveSupport::TestCase
     event_1 = Event.new(:jambase_id => 130442, :ticket_url => "http://www.fake.com", :date => Time.now, :venue_id => 12)
     assert event_1.save 
     
-    v = VoteUp.new(:user_id => 12, :event_id => event_1.id)
-    assert v.save
+    v = Vote.new(:user_id => 12, :event_id => event_1.id, :kind => "Up")
+    assert v.save   
+    
+    # This vote can be found
+    assert Vote.find_by_user_id_and_event_id_and_kind(12, event_1.id, "Up")
     
     # This user can't vote the same again (in the same way)
-    v2 = VoteUp.new(:user_id => 12, :event_id => event_1.id)
-    assert !v2.save  
+    v2 = Vote.new(:user_id => 12, :event_id => event_1.id, :kind => "Up")
+    assert !v2.save
+    
+      
     
     # But they can vote differently
-    v4 = VoteDown.new(:user_id => 12, :event_id => event_1.id)
+    v4 = Vote.new(:user_id => 12, :event_id => event_1.id, :kind => "Down")
     assert v4.save
     
+    # And this cancels their earlier vote
+    assert_nil Vote.find_by_user_id_and_event_id_and_kind(12, event_1.id, "Up")
+    
     # And a new user one can vote up
-    v3 = VoteUp.new(:user_id => 13, :event_id => event_1.id) 
+    v3 = Vote.new(:user_id => 13, :event_id => event_1.id, :kind => "Up") 
     assert v3.save   
     
     # And that first user can vote on another event
-    v4 = VoteUp.new(:user_id => 12, :event_id => 67767)
+    v4 = Vote.new(:user_id => 12, :event_id => 67767, :kind => "Up")
     assert v4.save
   end   
 

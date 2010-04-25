@@ -13,6 +13,8 @@ class VotesControllerTest < ActionController::TestCase
   end
 
   test "should create vote" do
+    @controller.request.expects(:current_user).returns(User.find(1))
+    
     assert_difference('Vote.count') do
       post :create, :vote => { }
     end
