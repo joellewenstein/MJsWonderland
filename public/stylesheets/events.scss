@@ -1,0 +1,76 @@
+/* Framework */
+#full-page-container {
+  width: 100%; 
+  background: gray;
+  
+  #content-container, #header, #content {
+    width: 972px;
+    margin: 0 auto;
+    
+    #header { 
+		  background: green;
+		  height: 100px; 
+	  }
+     
+ 		#content #sidebar, #content #main {
+			float: left; 
+			position: relative
+		}
+		
+    #content {
+      #sidebar { 
+        background: pink;
+        width: 100px;
+				height: 100px;
+		  }
+      #main { 
+			  background: white;
+			  width: 872px; 
+			}
+		}  
+
+	}
+ 
+  .clearer { clear: both }
+} 
+
+
+/* See all events */  
+
+@mixin rounded-event-row {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+
+.event-row {
+  background: white; 
+
+  .rounded-rect-outer {
+    background: #333;
+    padding: 5px; 
+    margin: 8px;
+    @include rounded-event-row;
+    
+    .rounded-rect-inner {
+      @include rounded-event-row;
+      background: white;
+    }   
+     
+    .column {
+      float: left;
+    }
+
+    .info-column {
+      width: 600px;
+    } 
+    .vote-column {
+      width: 100px;
+    }
+    .attendance-column {
+      width: 100px;
+    }
+  }              
+  
+
+}

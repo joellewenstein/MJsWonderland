@@ -1,0 +1,24 @@
+!!!
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
+    %title
+      Events: 
+      = controller.action_name
+    = stylesheet_link_tag 'scaffold'
+    = stylesheet_link_tag 'events'
+    = javascript_include_tag 'jquery-1.4.2' 
+    
+  %body
+    #full-page-container
+      #content-container
+        #header
+          %h1
+            Are They Good Live?
+          %p{ :style => "color: green" }
+            = flash[:notice]
+        #content
+          #sidebar
+          #main
+            = yield 
+          .clearer            

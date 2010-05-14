@@ -3825,3 +3825,77 @@ WARNING: Can't mass-assign these protected attributes: type
   [4;36;1mVote Load (0.2ms)[0m   [0;1mSELECT * FROM `votes` WHERE (`votes`.event_id = 980191011 AND (kind = 'Up')) [0m
   [4;35;1mVote Load (0.2ms)[0m   [0mSELECT * FROM `votes` WHERE (`votes`.event_id = 980191011 AND (kind = 'Down')) [0m
   [4;36;1mSQL (1.7ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mEvent Load (0.2ms)[0m   [0mSELECT `events`.id FROM `events` WHERE (`events`.`jambase_id` = 13) LIMIT 1[0m
+  [4;36;1mEvent Create (0.2ms)[0m   [0;1mINSERT INTO `events` (`event_url`, `created_at`, `updated_at`, `venue_id`, `date`, `ticket_url`, `jambase_id`) VALUES(NULL, '2010-05-10 04:37:47', '2010-05-10 04:37:47', 12, '2010-05-09 21:37:47', 'http://www.fake.com', 13)[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mVote Load (0.3ms)[0m   [0mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 0 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Up') LIMIT 1[0m
+  [4;36;1mVote Create (0.2ms)[0m   [0;1mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Up', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 0)[0m
+  [4;35;1mVote Load (0.3ms)[0m   [0mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 0 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Down') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mVote Load (0.4ms)[0m   [0;1mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 1 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Up') LIMIT 1[0m
+  [4;35;1mVote Create (0.2ms)[0m   [0mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Up', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 1)[0m
+  [4;36;1mVote Load (0.3ms)[0m   [0;1mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 1 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Down') LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mVote Load (0.2ms)[0m   [0mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 2 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Up') LIMIT 1[0m
+  [4;36;1mVote Create (0.2ms)[0m   [0;1mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Up', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 2)[0m
+  [4;35;1mVote Load (0.3ms)[0m   [0mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 2 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Down') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mVote Load (0.2ms)[0m   [0;1mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 3 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Up') LIMIT 1[0m
+  [4;35;1mVote Create (0.2ms)[0m   [0mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Up', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 3)[0m
+  [4;36;1mVote Load (0.2ms)[0m   [0;1mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 3 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Down') LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mVote Load (0.2ms)[0m   [0mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 4 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Up') LIMIT 1[0m
+  [4;36;1mVote Create (0.2ms)[0m   [0;1mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Up', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 4)[0m
+  [4;35;1mVote Load (0.2ms)[0m   [0mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 4 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Down') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mVote Load (0.2ms)[0m   [0;1mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 5 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Up') LIMIT 1[0m
+  [4;35;1mVote Create (0.2ms)[0m   [0mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Up', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 5)[0m
+  [4;36;1mVote Load (0.2ms)[0m   [0;1mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 5 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Down') LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mVote Load (0.2ms)[0m   [0mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 6 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Up') LIMIT 1[0m
+  [4;36;1mVote Create (0.2ms)[0m   [0;1mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Up', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 6)[0m
+  [4;35;1mVote Load (0.3ms)[0m   [0mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 6 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Down') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mVote Load (0.3ms)[0m   [0;1mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 7 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Up') LIMIT 1[0m
+  [4;35;1mVote Create (0.2ms)[0m   [0mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Up', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 7)[0m
+  [4;36;1mVote Load (0.3ms)[0m   [0;1mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 7 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Down') LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mVote Load (0.2ms)[0m   [0mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 8 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Up') LIMIT 1[0m
+  [4;36;1mVote Create (0.2ms)[0m   [0;1mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Up', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 8)[0m
+  [4;35;1mVote Load (0.2ms)[0m   [0mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 8 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Down') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mVote Load (0.3ms)[0m   [0;1mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 9 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Up') LIMIT 1[0m
+  [4;35;1mVote Create (0.2ms)[0m   [0mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Up', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 9)[0m
+  [4;36;1mVote Load (0.2ms)[0m   [0;1mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 9 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Down') LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mVote Load (0.2ms)[0m   [0mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 100 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Down') LIMIT 1[0m
+  [4;36;1mVote Create (0.2ms)[0m   [0;1mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Down', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 100)[0m
+  [4;35;1mVote Load (0.2ms)[0m   [0mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 100 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Up') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mVote Load (0.2ms)[0m   [0;1mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 101 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Down') LIMIT 1[0m
+  [4;35;1mVote Create (0.2ms)[0m   [0mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Down', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 101)[0m
+  [4;36;1mVote Load (0.3ms)[0m   [0;1mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 101 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Up') LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mVote Load (0.2ms)[0m   [0mSELECT `votes`.id FROM `votes` WHERE (`votes`.`user_id` = 102 AND `votes`.event_id = 980190963 AND `votes`.kind = 'Down') LIMIT 1[0m
+  [4;36;1mVote Create (0.2ms)[0m   [0;1mINSERT INTO `votes` (`kind`, `comment`, `created_at`, `event_id`, `updated_at`, `user_id`) VALUES('Down', NULL, '2010-05-10 04:37:47', 980190963, '2010-05-10 04:37:47', 102)[0m
+  [4;35;1mVote Load (0.2ms)[0m   [0mSELECT * FROM `votes` WHERE (`votes`.`user_id` = 102 AND `votes`.`event_id` = 980190963 AND `votes`.`kind` = 'Up') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mVote Load (0.2ms)[0m   [0mSELECT * FROM `votes` WHERE (`votes`.event_id = 980190963 AND (kind = 'Up')) [0m
+  [4;36;1mVote Load (0.3ms)[0m   [0;1mSELECT * FROM `votes` WHERE (`votes`.event_id = 980190963 AND (kind = 'Down')) [0m
+  [4;35;1mSQL (1.5ms)[0m   [0mROLLBACK[0m

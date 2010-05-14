@@ -1,51 +1,42 @@
-%h1
-  Listing events
-%table
-  %tr
-    %th Date
-    %th Venue
-    %th Artists
-    %th Your Vote
-    %th Up Votes
-    %th Down Votes
-    %th Attendance Count
-    %th Comment?
-    %th Take Action!
-  - @events.each do |event|
-    - current_user_vote = event.up_down_vote_for_user(current_user)
-    %tr.event-row{:event_id => event.id}
-      %td= h event.date
-      %td
-        %b= h event.venue.name
-      %td= h event.artists.collect{|x| x.name}.to_sentence
-      %td= (current_user_vote ? "You've said: #{current_user_vote.comment}" : "You haven't voted")
-      %td= h event.votes_up_count
-      %td= h event.votes_down_count
-      %td= h event.attendance_count
-      %td.comment{:style => "display: none"} 
-        %form
-          Add a comment:
-          = hidden_field_tag "id", "-1" 
-          = text_field_tag "vote[comment]"
-          .submit-comment= submit_tag 'Create'           
-      %td.voting
-        .vote-link{:vote_kind => "Up"}= link_to "Vote Up!", "#"
-        .vote-link{:vote_kind => "Down"}= link_to "Vote Down!", "#"
-        .vote-link{:vote_kind => "Attending"}= link_to "I'm going!", "#"
+- @events.each do |event|
+  - current_user_vote = event.up_down_vote_for_user(current_user)
+  .event-row{:event_id => event.id}
+    .rounded-rect-outer
+      .rounded-rect-inner
+        .column.info-column 
+          .date= h event.date
+          .artists= h event.artists.collect{|x| x.name}.to_sentence
+          .venue= h event.venue.name
+      
+        .column.vote-column
+          .current
+            = h event.votes_up_count
+            = h event.votes_down_count
+            = h event.attendance_count 
         
-      %td=# link_to 'Show', event
-      %td=# link_to 'Edit', edit_event_path(event)
-      %td=# link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete        
-%br
-= link_to 'New event', new_event_path
+          .voting-options
+            .vote-link{:vote_kind => "Up"}= link_to "Vote Up!", "#"
+            .vote-link{:vote_kind => "Down"}= link_to "Vote Down!", "#"
+        
+            .comment{:style => "display: none"} 
+              %form
+                Add a comment:
+                = hidden_field_tag "id", "-1" 
+                = text_field_tag "vote[comment]"
+                .submit-comment= submit_tag 'Create'
+            
+        .column.attendance-column
+          .vote-link{:vote_kind => "Attending"}= link_to "I'm going!", "#"
+        .clearer           
+  .clearer
 
 :javascript 
 
   // Voting
-  $(".event-row .voting .vote-link a").click(function(){
-    event_id = $(this).parents("tr").attr("event_id");
+  $(".event-row .voting-options .vote-link a").click(function(){
+    event_id = $(this).parents(".event-row").attr("event_id");
     vote_kind = $(this).parents(".vote-link").attr("vote_kind");
-    form_object = $(this).parents("tr").find(".comment");
+    form_object = $(this).parents(".voting-options").find(".comment");
     
     $.post('/votes',  
            {'vote[event_id]': event_id, 'vote[kind]': vote_kind },

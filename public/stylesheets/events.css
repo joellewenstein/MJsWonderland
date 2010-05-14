@@ -1,0 +1,44 @@
+/* Framework */
+#full-page-container {
+  width: 100%;
+  background: gray; }
+  #full-page-container #content-container, #full-page-container #header, #full-page-container #content {
+    width: 972px;
+    margin: 0 auto; }
+    #full-page-container #content-container #header, #full-page-container #header #header, #full-page-container #content #header {
+      background: green;
+      height: 100px; }
+    #full-page-container #content-container #content #sidebar, #full-page-container #content-container #content #main, #full-page-container #header #content #sidebar, #full-page-container #header #content #main, #full-page-container #content #content #sidebar, #full-page-container #content #content #main {
+      float: left;
+      position: relative; }
+    #full-page-container #content-container #content #sidebar, #full-page-container #header #content #sidebar, #full-page-container #content #content #sidebar {
+      background: pink;
+      width: 100px;
+      height: 100px; }
+    #full-page-container #content-container #content #main, #full-page-container #header #content #main, #full-page-container #content #content #main {
+      background: white;
+      width: 872px; }
+  #full-page-container .clearer {
+    clear: both; }
+
+/* See all events */
+.event-row {
+  background: white; }
+  .event-row .rounded-rect-outer {
+    background: #333;
+    padding: 5px;
+    margin: 8px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px; }
+    .event-row .rounded-rect-outer .rounded-rect-inner {
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      background: white; }
+    .event-row .rounded-rect-outer .column {
+      float: left; }
+    .event-row .rounded-rect-outer .info-column {
+      width: 600px; }
+    .event-row .rounded-rect-outer .vote-column {
+      width: 100px; }
+    .event-row .rounded-rect-outer .attendance-column {
+      width: 100px; }
