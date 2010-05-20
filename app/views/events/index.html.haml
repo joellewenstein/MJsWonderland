@@ -3,10 +3,16 @@
   .event-row{:event_id => event.id}
     .rounded-rect-outer
       .rounded-rect-inner
-        .column.info-column 
-          .date= h event.date
-          .artists= h event.artists.collect{|x| x.name}.to_sentence
-          .venue= h event.venue.name
+        .column.info-column
+          - image = event.artists.first.album_image
+          - if image
+            .album-image= image_tag image
+            
+          .artists
+            %span.venue= h event.venue.name
+            &bull;
+            %span.date= h event.date.strftime("%B %d, %Y")
+            .artist-name= h event.artists.collect{|x| x.name}.to_sentence  
       
         .column.vote-column
           .current

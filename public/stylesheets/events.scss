@@ -1,7 +1,18 @@
+html {
+  background-color: #CCFFFF;
+}       
+
+body {
+  font-family: Helvetica, Arial, Sans Serif;
+}
+
 /* Framework */
 #full-page-container {
-  width: 100%; 
-  background: gray;
+  width: 100%;
+  background-color: #CCFFFF;
+  position: absolute;
+  top: 0;
+  left: 0; 
   
   #content-container, #header, #content {
     width: 972px;
@@ -55,6 +66,7 @@
     .rounded-rect-inner {
       @include rounded-event-row;
       background: white;
+      padding: 5px;
     }   
      
     .column {
@@ -63,6 +75,43 @@
 
     .info-column {
       width: 600px;
+
+      .album-image {
+        width: 50px;
+        height: 50px;
+        float: left;
+        
+        img {
+          width: 50px;
+          height: 50px;
+        }
+      }     
+      
+      .artists {
+        float: left;
+        padding: 0 10px;
+        width: 525px;
+         
+        .artist-name {
+          font-size: 18px;
+          font-weight: bold; 
+        }
+           
+        .venue, .date {
+          font-size: 11px; 
+        }
+        
+        .venue {
+          font-weight: bold;  
+        }                
+
+        .date {
+          color: #666;
+        }  
+        
+
+
+      }
     } 
     .vote-column {
       width: 100px;

@@ -1,7 +1,16 @@
+html {
+  background-color: #CCFFFF; }
+
+body {
+  font-family: Helvetica, Arial, Sans Serif; }
+
 /* Framework */
 #full-page-container {
   width: 100%;
-  background: gray; }
+  background-color: #CCFFFF;
+  position: absolute;
+  top: 0;
+  left: 0; }
   #full-page-container #content-container, #full-page-container #header, #full-page-container #content {
     width: 972px;
     margin: 0 auto; }
@@ -33,11 +42,32 @@
     .event-row .rounded-rect-outer .rounded-rect-inner {
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px;
-      background: white; }
+      background: white;
+      padding: 5px; }
     .event-row .rounded-rect-outer .column {
       float: left; }
     .event-row .rounded-rect-outer .info-column {
       width: 600px; }
+      .event-row .rounded-rect-outer .info-column .album-image {
+        width: 50px;
+        height: 50px;
+        float: left; }
+        .event-row .rounded-rect-outer .info-column .album-image img {
+          width: 50px;
+          height: 50px; }
+      .event-row .rounded-rect-outer .info-column .artists {
+        float: left;
+        padding: 0 10px;
+        width: 525px; }
+        .event-row .rounded-rect-outer .info-column .artists .artist-name {
+          font-size: 18px;
+          font-weight: bold; }
+        .event-row .rounded-rect-outer .info-column .artists .venue, .event-row .rounded-rect-outer .info-column .artists .date {
+          font-size: 11px; }
+        .event-row .rounded-rect-outer .info-column .artists .venue {
+          font-weight: bold; }
+        .event-row .rounded-rect-outer .info-column .artists .date {
+          color: #666; }
     .event-row .rounded-rect-outer .vote-column {
       width: 100px; }
     .event-row .rounded-rect-outer .attendance-column {
