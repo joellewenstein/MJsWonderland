@@ -1,15 +1,33 @@
 html {
-  background-color: #CCFFFF;
+  background-color: #EEFAF4;
 }       
 
-body {
+body, textarea {
   font-family: Helvetica, Arial, Sans Serif;
+} 
+ 
+a {
+  text-decoration: none;
+}                       
+
+a:hover {
+  text-decoration: underline;
+  
+}
+a, a:hover {
+  color: #395AA8;
+  background: none; 
+} 
+
+a:visited {
+  color: #1F396D;
 }
 
 /* Framework */
 #full-page-container {
+  background: url("/images/main_background.png") repeat-x 0px -1px;
   width: 100%;
-  background-color: #CCFFFF;
+  background-color: #EEFAF4;
   position: absolute;
   top: 0;
   left: 0; 
@@ -18,9 +36,31 @@ body {
     width: 972px;
     margin: 0 auto;
     
+    #content {
+      position: relative;
+      top: -17px;
+    }            
+    
     #header { 
-		  background: green;
-		  height: 100px; 
+		  background: #7BC794;
+		  height: 62px;
+		  padding-top: 11px;
+		  padding-left: 13px;
+		  position: relative;
+		  top: -17px;
+		  
+		  h1 {
+		    font-family: 'Lobster', arial, serif;
+		    color: black;
+		    margin-bottom: 7px;
+		  } 
+		  
+		  h5 {
+		    color: #666;
+		    font-size: 12px;
+		    margin: 0;   
+		    font-weight: normal
+		  }
 	  }
      
  		#content #sidebar, #content #main {
@@ -30,12 +70,32 @@ body {
 		
     #content {
       #sidebar { 
-        background: pink;
+        background: #DEE8E1;
         width: 100px;
-				height: 100px;
+				height: 1000px;
+				padding: 15px 5px;
+				width: 90px; 
+				
+				font-size: 11px; 
+				
+				.heading {
+				  font-weight: bold;
+				}                   
+				
+				ul { 
+				  padding-left: 0;
+
+  				li {
+  				  list-style-type: none; 
+  				  font-size: 11px; 
+  				  margin: 7px 0; 
+  				  line-height: 1.1em;
+    				
+  				}  
+			  }
 		  }
       #main { 
-			  background: white;
+			  background: #EEFAF4;
 			  width: 872px; 
 			}
 		}  
@@ -55,10 +115,10 @@ body {
 
 
 .event-row {
-  background: white; 
+  background: #EEFAF4; 
 
   .rounded-rect-outer {
-    background: #333;
+    background: #A9D3B4;
     padding: 5px; 
     margin: 8px;
     @include rounded-event-row;
@@ -67,6 +127,7 @@ body {
       @include rounded-event-row;
       background: white;
       padding: 5px;
+      border: 1px solid #66B27C;
     }   
      
     .column {
@@ -74,7 +135,7 @@ body {
     }
 
     .info-column {
-      width: 600px;
+      width: 500px;
 
       .album-image {
         width: 50px;
@@ -90,9 +151,10 @@ body {
       .artists {
         float: left;
         padding: 0 10px;
-        width: 525px;
+        width: 425px;
          
         .artist-name {
+          margin-top: 3px;
           font-size: 18px;
           font-weight: bold; 
         }
@@ -114,12 +176,230 @@ body {
       }
     } 
     .vote-column {
-      width: 100px;
+      width: 150px;
+      border-left: 1px solid #EEEEEE;
+      border-right: 1px solid #EEEEEE;
+      padding-left: 30px;
+      padding-right: 15px;
+      
+       
+      .comments{
+        display: none;
+        margin: 8px 0;
+      }
+      .comments-link {
+        float:right;
+        font-size:9px;
+        height:0;
+        line-height:1em;
+        position:relative;
+        right:8px;
+        top:-38px;
+        
+        
+        a, a:hover {
+          color: #777;
+          background: none;
+        }
+        
+      }
+      .current {
+        font-size: 24px; 
+        font-weight: bold;
+        background: url('/images/hand-background.png') no-repeat 10px -5px;     
+        padding-top: 13px;
+        padding-left: 41px;    
+        height: 32px;
+        margin-bottom: 6px;
+        
+        .no-votes-yet {
+          font-size: 12px;
+        }
+      }    
+      
+      .voting-options { 
+        position: relative;
+        
+        .your-vote {
+          color:#333333;
+          font-size:12px;
+          margin:0 auto 0 -7px;
+          text-align:center;
+          width:100%;
+        }
+        .vote-link {
+          font-size: 11px;
+          float: left;
+          padding-left: 21px; 
+          margin-right: 10px;
+          
+
+          
+          a:hover {
+            background: none;
+          }
+          
+          &.up {
+            background: url('/images/vote_button_small_up.png') no-repeat;
+          } 
+          
+          &.down {
+            background: url('/images/vote_button_small_down.png') no-repeat;
+          }
+
+        }
+        
+        .comment {  
+          @include rounded-event-row;
+          background: white;
+          padding:10px;
+          z-index:1000;
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-size: 10px;
+          color: #555; 
+          padding-top: 15px;
+          border: 1px solid #ddd;
+          
+          textarea {
+            width: 146px;
+            height: 100px;
+            font-size: 11px;
+          }
+          
+          .submit-comment {
+            padding-top: 5px;
+            
+            .cancel, .submit {
+              float: right;
+            } 
+            .cancel {
+              margin-right: 8px;
+            }
+          }
+        }
+      }
     }
     .attendance-column {
       width: 100px;
+      padding-left: 29px; 
+      
+      .attendance-count {
+        font-size: 20px;
+        color: #555; 
+        height: 37px;
+        width: 80px;
+        padding-top: 14px;
+        padding-left: 5px;
+        background: url('/images/raised-hand-background.png') no-repeat -14px -5px;
+        text-align: center;
+        
+        .smaller {
+          font-size: 12px; 
+          position: relative;
+          top: -3px;
+        }     
+        
+      } 
+      
+      .your-vote {
+        color:#333333;
+        font-size:12px;
+      }
+      
+      .vote-link {
+        background: url('/images/vote_button_small_going.png') no-repeat;
+        padding-left: 17px; 
+        font-size: 11px;
+      }
+
+      a:hover {
+        background: none;
+      }
     }
   }              
   
 
 }
+
+
+
+
+/* USER PAGE */  
+
+#new-user, #returning-user {
+  float: left;
+  margin-top: 15px; 
+  padding: 10px;
+  
+  h2, h3 {
+    margin-bottom: 5px !important;
+  } 
+  
+  label, input {
+    float: left;
+  } 
+  
+  .text-boxes {
+    overflow: hidden;
+  }            
+  
+  label {
+    margin-right: 10px;
+    width: 85px;
+    text-align: right;
+    color: #888888;
+    font-size: 90%;
+  }
+  
+  .button {
+    float: right;
+    clear: both
+  }
+}             
+  
+
+
+#new-user {
+  margin-right: 50px; 
+  border-right:1px solid #DDDDDD;
+  padding-right: 100px; 
+  
+  &.dim {
+    moz-opacity:.20; 
+    filter:alpha(opacity=20); 
+    opacity:.20;
+  }
+  
+  .text-boxes input {
+    width: 255px;
+  }
+} 
+
+#returning-user {
+  padding-top: 13px;
+  
+  h4 {
+    background: #FDAC30 none repeat scroll 0 0;
+    color: white;
+    font-weight: normal;
+    margin: 0;
+    padding: 5px;
+  }
+  .text-boxes input {
+    width: 130px;
+  }
+  
+  .remember-me {
+    float: right;
+    clear: both;
+    
+    label {
+      width: 100px;
+      font-size: 80%;
+      margin-right: 3px;
+    }
+  }
+}
+

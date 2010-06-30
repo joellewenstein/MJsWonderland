@@ -1,0 +1,7 @@
+.heading
+  Venue
+%ul
+  - @events.collect{|event| event.venue}.uniq.sort{|a,b| a.name <=> b.name}.each do |venue|
+    %li
+      = link_to venue.name, events_path(:venue_id => venue.id)
+      

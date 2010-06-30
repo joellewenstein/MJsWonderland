@@ -1,5 +1,6 @@
 - @events.each do |event|
   - current_user_vote = event.up_down_vote_for_user(current_user)
+  - current_user_attending = event.attending_vote_for_user(current_user)
   .event-row{:event_id => event.id}
     .rounded-rect-outer
       .rounded-rect-inner
@@ -15,31 +16,64 @@
             .artist-name= h event.artists.collect{|x| x.name}.to_sentence  
       
         .column.vote-column
+          
+
           .current
-            = h event.votes_up_count
-            = h event.votes_down_count
-            = h event.attendance_count 
-        
+            - rating = event.rating
+            - if rating != -1
+              #{(rating*100).to_i}%
+            - else
+              .no-votes-yet No votes yet
+          
+          - if event.comments.any?
+            .comments-link
+              = link_to "See<br/>comments", "#"   
+       
+ 
+          .clearer
+          .comments
+            - event.comments.each do |comment|
+              %span &#x275D;#{comment}&#x275E;
+               
           .voting-options
-            .vote-link{:vote_kind => "Up"}= link_to "Vote Up!", "#"
-            .vote-link{:vote_kind => "Down"}= link_to "Vote Down!", "#"
-        
-            .comment{:style => "display: none"} 
-              %form
-                Add a comment:
-                = hidden_field_tag "id", "-1" 
-                = text_field_tag "vote[comment]"
-                .submit-comment= submit_tag 'Create'
-            
+            - if !current_user_vote
+              .vote-link.up{:vote_kind => "Up"}= link_to "Good", "#"
+              .vote-link.down{:vote_kind => "Down"}= link_to "Not Good", "#"
+              .clearer
+              .comment{:style => "display: none"} 
+                %form
+                  Add a comment:
+                  = hidden_field_tag "id", "-1" 
+                  = text_area_tag "vote[comment]"
+                  .submit-comment
+                    .submit= submit_tag 'Ok'
+                    .cancel= link_to "Cancel", "#"
+                    
+                    .clearer                                           
+            - else
+              .your-vote
+                You voted:
+                - if current_user_vote.kind == "Up"
+                  Good!
+                - elsif current_user_vote.kind == "Down"
+                  Not Good!
+                                 
         .column.attendance-column
-          .vote-link{:vote_kind => "Attending"}= link_to "I'm going!", "#"
+          .attendance-count
+            = event.attendance_count
+            %span.smaller= ((event.attendance_count == 1) ? "attendee" : "attendees")
+          - if !current_user_attending
+            .vote-link{:vote_kind => "Attending"}= link_to "I'm going!", "#" 
+          - else
+            .your-vote
+              You're going!
         .clearer           
   .clearer
 
 :javascript 
 
   // Voting
-  $(".event-row .voting-options .vote-link a").click(function(){
+  $(".event-row .vote-link a").click(function(){
     event_id = $(this).parents(".event-row").attr("event_id");
     vote_kind = $(this).parents(".vote-link").attr("vote_kind");
     form_object = $(this).parents(".voting-options").find(".comment");
@@ -59,6 +93,12 @@
     return false;
   });
   
+  $(".event-row .comments-link").click(function(){
+    $(this).parents('.vote-column').find('.comments').slideDown();
+    $(this).hide();
+    return false;
+  });
+  
   // Commenting
   
   $(".event-row .comment form").submit(function(){
@@ -67,6 +107,13 @@
         type: "PUT",
         url: url,
         data: $(this).serialize() });
+    $(this).parents('.comment').fadeOut("Fast");
     return false;
     
   });
+   
+   $(".event-row .comment .cancel").click(function(){
+    $(this).parents('.comment').fadeOut("Fast");
+    return false;
+   });
+  

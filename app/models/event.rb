@@ -30,9 +30,15 @@ class Event < ActiveRecord::Base
   end
   
   def up_down_vote_for_user(user)
-    puts "UpDown vote for or user #{user.id}"
-    puts (self.votes_up + self.votes_down).to_yaml
     (self.votes_up + self.votes_down).find{|vote| vote.user = user}
+  end
+  
+  def attending_vote_for_user(user)
+    [self.votes_attending].flatten.find{|vote| vote.user = user}
+  end
+  
+  def comments
+    self.votes.collect{|vote| vote.comment }.compact.reject{|comment| comment.blank? }
   end   
   
             
@@ -40,7 +46,7 @@ class Event < ActiveRecord::Base
   # The GoodLive Rating: Currently based on the Lower bound of Wilson score confidence interval for a Bernoulli parameter 
   def rating
     if total_votes_count == 0
-      nil
+      -1
     else
       wilson_score_rating(votes_up_count, total_votes_count, 0.15)
     end

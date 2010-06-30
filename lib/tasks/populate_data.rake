@@ -5,7 +5,7 @@ namespace :good_live do
     require 'nokogiri'
     require 'open-uri'
     
-    doc = Nokogiri::HTML(open('http://api.jambase.com/search?zip=94102&radius=1&apikey=tggvg5fyv3m8z4qaqrj36dtw&startDate=04/15/10&endDate=04/17/10'))
+    doc = Nokogiri::HTML(open('http://api.jambase.com/search?zip=94102&radius=1&apikey=tggvg5fyv3m8z4qaqrj36dtw&startDate=7/01/10&endDate=09/01/10'))
     
     doc.css('event').each do |event|
       #########
@@ -46,7 +46,9 @@ namespace :good_live do
           potentially_existing_artist.save!
           
           e.artists << potentially_existing_artist
-        end  
+        end 
+        
+        puts "Created event #{e.to_yaml}" 
       end
       
       ##########
@@ -77,5 +79,29 @@ namespace :good_live do
       
       e.save!
     end
-  end
+  end 
+  
+   task :get_album_art => :environment do
+     puts "Populating album art"
+
+     require 'nokogiri'
+     require 'open-uri'
+     
+     Artist.find(:all).each do |artist|
+       if artist.image_name.blank? 
+         doc = `curl 'http://search.yahooapis.com/ImageSearchService/V1/imageSearch?appid=YahooDemo&query=#{artist.name.gsub(" ", "%20")}%20album%20cover&output=json' ` 
+         
+
+         images = ActiveSupport::JSON.decode(doc)  
+         album_art_url = images["ResultSet"]["Result"].first["Url"].to_s  
+         
+         artist.image_name = album_art_url
+         artist.save
+         
+         puts "Added image for artist #{artist.name}"
+         
+         sleep(5)
+       end 
+     end
+   end   
 end

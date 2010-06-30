@@ -44,8 +44,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:notice] = 'User was successfully created.'
-        format.html { redirect_to(@user) }
+        flash[:notice] = 'Thanks for signing up. Please login to see the shows.'
+        
+        @dim_sign_up = true
+        
+        format.html { redirect_to :controller => "sessions", :action => "new", :prompt_for_login => true }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }

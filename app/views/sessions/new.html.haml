@@ -1,0 +1,40 @@
+- dim_sign_up = params[:prompt_for_login]
+#user-page
+  #new-user{:class => (dim_sign_up ? "dim" : "")}
+    %h2 Sign up to see the hottest shows in SF
+    - form_for(@user) do |f|
+      = f.error_messages
+      .text-boxes
+        %p
+          = f.label :email
+          = f.text_field :email
+        %br/
+        %p
+          = f.label :password
+          = f.text_field :password  
+      .clearer
+      .button
+        %p
+          = f.submit 'Sign Up'
+    
+    
+  #returning-user
+    - if dim_sign_up
+      %h4 Thanks for signing up. To get started:
+    %h3 Login to your GoodLive account
+    - form_for resource_name, resource, :url => session_path(resource_name) do |f|
+      .text-boxes
+        %p= f.label :email
+        %p= f.text_field :email
+        %br/
+        %p= f.label :password
+        %p= f.password_field :password 
+      .clearer
+      - if devise_mapping.rememberable?
+        .remember-me
+          %p
+            = f.label :remember_me
+            = f.check_box :remember_me
+                 
+      .button
+        %p= f.submit "Login"  

@@ -1,40 +1,82 @@
 html {
-  background-color: #CCFFFF; }
+  background-color: #EEFAF4; }
 
-body {
+body, textarea {
   font-family: Helvetica, Arial, Sans Serif; }
+
+a {
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline; }
+
+a, a:hover {
+  color: #395AA8;
+  background: none; }
+
+a:visited {
+  color: #1F396D; }
 
 /* Framework */
 #full-page-container {
+  background: url("/images/main_background.png") repeat-x 0px -1px;
   width: 100%;
-  background-color: #CCFFFF;
+  background-color: #EEFAF4;
   position: absolute;
   top: 0;
   left: 0; }
   #full-page-container #content-container, #full-page-container #header, #full-page-container #content {
     width: 972px;
     margin: 0 auto; }
+    #full-page-container #content-container #content, #full-page-container #header #content, #full-page-container #content #content {
+      position: relative;
+      top: -17px; }
     #full-page-container #content-container #header, #full-page-container #header #header, #full-page-container #content #header {
-      background: green;
-      height: 100px; }
+      background: #7BC794;
+      height: 62px;
+      padding-top: 11px;
+      padding-left: 13px;
+      position: relative;
+      top: -17px; }
+      #full-page-container #content-container #header h1, #full-page-container #header #header h1, #full-page-container #content #header h1 {
+        font-family: "Lobster", arial, serif;
+        color: black;
+        margin-bottom: 7px; }
+      #full-page-container #content-container #header h5, #full-page-container #header #header h5, #full-page-container #content #header h5 {
+        color: #666;
+        font-size: 12px;
+        margin: 0;
+        font-weight: normal; }
     #full-page-container #content-container #content #sidebar, #full-page-container #content-container #content #main, #full-page-container #header #content #sidebar, #full-page-container #header #content #main, #full-page-container #content #content #sidebar, #full-page-container #content #content #main {
       float: left;
       position: relative; }
     #full-page-container #content-container #content #sidebar, #full-page-container #header #content #sidebar, #full-page-container #content #content #sidebar {
-      background: pink;
+      background: #DEE8E1;
       width: 100px;
-      height: 100px; }
+      height: 1000px;
+      padding: 15px 5px;
+      width: 90px;
+      font-size: 11px; }
+      #full-page-container #content-container #content #sidebar .heading, #full-page-container #header #content #sidebar .heading, #full-page-container #content #content #sidebar .heading {
+        font-weight: bold; }
+      #full-page-container #content-container #content #sidebar ul, #full-page-container #header #content #sidebar ul, #full-page-container #content #content #sidebar ul {
+        padding-left: 0; }
+        #full-page-container #content-container #content #sidebar ul li, #full-page-container #header #content #sidebar ul li, #full-page-container #content #content #sidebar ul li {
+          list-style-type: none;
+          font-size: 11px;
+          margin: 7px 0;
+          line-height: 1.1em; }
     #full-page-container #content-container #content #main, #full-page-container #header #content #main, #full-page-container #content #content #main {
-      background: white;
+      background: #EEFAF4;
       width: 872px; }
   #full-page-container .clearer {
     clear: both; }
 
 /* See all events */
 .event-row {
-  background: white; }
+  background: #EEFAF4; }
   .event-row .rounded-rect-outer {
-    background: #333;
+    background: #A9D3B4;
     padding: 5px;
     margin: 8px;
     -moz-border-radius: 5px;
@@ -43,11 +85,12 @@ body {
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px;
       background: white;
-      padding: 5px; }
+      padding: 5px;
+      border: 1px solid #66B27C; }
     .event-row .rounded-rect-outer .column {
       float: left; }
     .event-row .rounded-rect-outer .info-column {
-      width: 600px; }
+      width: 500px; }
       .event-row .rounded-rect-outer .info-column .album-image {
         width: 50px;
         height: 50px;
@@ -58,8 +101,9 @@ body {
       .event-row .rounded-rect-outer .info-column .artists {
         float: left;
         padding: 0 10px;
-        width: 525px; }
+        width: 425px; }
         .event-row .rounded-rect-outer .info-column .artists .artist-name {
+          margin-top: 3px;
           font-size: 18px;
           font-weight: bold; }
         .event-row .rounded-rect-outer .info-column .artists .venue, .event-row .rounded-rect-outer .info-column .artists .date {
@@ -69,6 +113,149 @@ body {
         .event-row .rounded-rect-outer .info-column .artists .date {
           color: #666; }
     .event-row .rounded-rect-outer .vote-column {
-      width: 100px; }
+      width: 150px;
+      border-left: 1px solid #EEEEEE;
+      border-right: 1px solid #EEEEEE;
+      padding-left: 30px;
+      padding-right: 15px; }
+      .event-row .rounded-rect-outer .vote-column .comments {
+        display: none;
+        margin: 8px 0; }
+      .event-row .rounded-rect-outer .vote-column .comments-link {
+        float: right;
+        font-size: 9px;
+        height: 0;
+        line-height: 1em;
+        position: relative;
+        right: 8px;
+        top: -38px; }
+        .event-row .rounded-rect-outer .vote-column .comments-link a, .event-row .rounded-rect-outer .vote-column .comments-link a:hover {
+          color: #777;
+          background: none; }
+      .event-row .rounded-rect-outer .vote-column .current {
+        font-size: 24px;
+        font-weight: bold;
+        background: url("/images/hand-background.png") no-repeat 10px -5px;
+        padding-top: 13px;
+        padding-left: 41px;
+        height: 32px;
+        margin-bottom: 6px; }
+        .event-row .rounded-rect-outer .vote-column .current .no-votes-yet {
+          font-size: 12px; }
+      .event-row .rounded-rect-outer .vote-column .voting-options {
+        position: relative; }
+        .event-row .rounded-rect-outer .vote-column .voting-options .your-vote {
+          color: #333333;
+          font-size: 12px;
+          margin: 0 auto 0 -7px;
+          text-align: center;
+          width: 100%; }
+        .event-row .rounded-rect-outer .vote-column .voting-options .vote-link {
+          font-size: 11px;
+          float: left;
+          padding-left: 21px;
+          margin-right: 10px; }
+          .event-row .rounded-rect-outer .vote-column .voting-options .vote-link a:hover {
+            background: none; }
+          .event-row .rounded-rect-outer .vote-column .voting-options .vote-link.up {
+            background: url("/images/vote_button_small_up.png") no-repeat; }
+          .event-row .rounded-rect-outer .vote-column .voting-options .vote-link.down {
+            background: url("/images/vote_button_small_down.png") no-repeat; }
+        .event-row .rounded-rect-outer .vote-column .voting-options .comment {
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          background: white;
+          padding: 10px;
+          z-index: 1000;
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-size: 10px;
+          color: #555;
+          padding-top: 15px;
+          border: 1px solid #ddd; }
+          .event-row .rounded-rect-outer .vote-column .voting-options .comment textarea {
+            width: 146px;
+            height: 100px;
+            font-size: 11px; }
+          .event-row .rounded-rect-outer .vote-column .voting-options .comment .submit-comment {
+            padding-top: 5px; }
+            .event-row .rounded-rect-outer .vote-column .voting-options .comment .submit-comment .cancel, .event-row .rounded-rect-outer .vote-column .voting-options .comment .submit-comment .submit {
+              float: right; }
+            .event-row .rounded-rect-outer .vote-column .voting-options .comment .submit-comment .cancel {
+              margin-right: 8px; }
     .event-row .rounded-rect-outer .attendance-column {
-      width: 100px; }
+      width: 100px;
+      padding-left: 29px; }
+      .event-row .rounded-rect-outer .attendance-column .attendance-count {
+        font-size: 20px;
+        color: #555;
+        height: 37px;
+        width: 80px;
+        padding-top: 14px;
+        padding-left: 5px;
+        background: url("/images/raised-hand-background.png") no-repeat -14px -5px;
+        text-align: center; }
+        .event-row .rounded-rect-outer .attendance-column .attendance-count .smaller {
+          font-size: 12px;
+          position: relative;
+          top: -3px; }
+      .event-row .rounded-rect-outer .attendance-column .your-vote {
+        color: #333333;
+        font-size: 12px; }
+      .event-row .rounded-rect-outer .attendance-column .vote-link {
+        background: url("/images/vote_button_small_going.png") no-repeat;
+        padding-left: 17px;
+        font-size: 11px; }
+      .event-row .rounded-rect-outer .attendance-column a:hover {
+        background: none; }
+
+/* USER PAGE */
+#new-user, #returning-user {
+  float: left;
+  margin-top: 15px;
+  padding: 10px; }
+  #new-user h2, #new-user h3, #returning-user h2, #returning-user h3 {
+    margin-bottom: 5px !important; }
+  #new-user label, #new-user input, #returning-user label, #returning-user input {
+    float: left; }
+  #new-user .text-boxes, #returning-user .text-boxes {
+    overflow: hidden; }
+  #new-user label, #returning-user label {
+    margin-right: 10px;
+    width: 85px;
+    text-align: right;
+    color: #888888;
+    font-size: 90%; }
+  #new-user .button, #returning-user .button {
+    float: right;
+    clear: both; }
+
+#new-user {
+  margin-right: 50px;
+  border-right: 1px solid #DDDDDD;
+  padding-right: 100px; }
+  #new-user.dim {
+    moz-opacity: .20;
+    filter: alpha(opacity=20);
+    opacity: .20; }
+  #new-user .text-boxes input {
+    width: 255px; }
+
+#returning-user {
+  padding-top: 13px; }
+  #returning-user h4 {
+    background: #FDAC30 none repeat scroll 0 0;
+    color: white;
+    font-weight: normal;
+    margin: 0;
+    padding: 5px; }
+  #returning-user .text-boxes input {
+    width: 130px; }
+  #returning-user .remember-me {
+    float: right;
+    clear: both; }
+    #returning-user .remember-me label {
+      width: 100px;
+      font-size: 80%;
+      margin-right: 3px; }

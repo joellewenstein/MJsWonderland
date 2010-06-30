@@ -3,9 +3,17 @@ class EventsController < ApplicationController
   
   # GET /events
   # GET /events.xml
-  def index
-    @events = Event.all
-
+  def index    
+    events = Event.all
+    
+    if params[:venue_id]
+      events = events.find_all{|event| event.venue_id.to_i == params[:venue_id].to_i}
+    end
+    
+    @events = events.sort{|a,b| b.rating <=> a.rating}
+    
+    @render_sidebar = true
+    
     respond_to do |format|                  
       format.html # index.html.erb
       format.xml  { render :xml => @events }

@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  layout "events"
+  
   include Devise::Controllers::Helpers
 
   # Maps the messages types that comes from warden to a flash type.
