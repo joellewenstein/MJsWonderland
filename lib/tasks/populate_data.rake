@@ -83,9 +83,6 @@ namespace :good_live do
   
    task :get_album_art => :environment do
      puts "Populating album art"
-
-     require 'nokogiri'
-     require 'open-uri'
      
      Artist.find(:all).each do |artist|
        if artist.image_name.blank? 
