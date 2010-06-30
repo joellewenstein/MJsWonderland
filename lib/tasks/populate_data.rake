@@ -89,15 +89,19 @@ namespace :good_live do
          doc = `curl 'http://search.yahooapis.com/ImageSearchService/V1/imageSearch?appid=YahooDemo&query=#{artist.name.gsub(" ", "%20")}%20album%20cover&output=json' ` 
          
 
-         images = ActiveSupport::JSON.decode(doc)  
-         album_art_url = images["ResultSet"]["Result"].first["Url"].to_s  
+         images = ActiveSupport::JSON.decode(doc)
+
+         if images && images["ResultSet"] && images["ResultSet"]["Result"].any?  
+           album_art_url = images["ResultSet"]["Result"].first["Url"].to_s  
          
-         artist.image_name = album_art_url
-         artist.save
+           artist.image_name = album_art_url
+           artist.save
          
-         puts "Added image for artist #{artist.name}"
+           puts "Added image for artist #{artist.name}"
          
-         sleep(5)
+           sleep(5)          
+         end  
+         
        end 
      end
    end   
